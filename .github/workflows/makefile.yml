@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ JCAC10003-OC2-V1.0.33B7-210831_1636 ]
+  pull_request:
+    branches: [ JCAC10003-OC2-V1.0.33B7-210831_1636 ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: configure
+      run: ./configure
+      
+    - name: Install dependencies
+      run: make
+      
+    - name: Run check
+      run: make check
+      
+    - name: Run distcheck
+      run: make distcheck
